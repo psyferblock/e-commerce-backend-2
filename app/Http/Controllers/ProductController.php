@@ -47,18 +47,45 @@ class ProductController extends Controller{
 
     }
 
-    public function deleteProduct(request $request,$id){
+    public function deleteProduct(Request $request,$id=null,$name){
     
-        
-        $product = Product::find($id);
+        if($product = Product::find($id)){
+
+            $product->delete();
+            return response()->json([
+                "status"=>"success",
+                "results"=>$product
+            ],200);   
+        }
+        else if(
+        $product = Product::find($name)){}
+
         $product->delete();
         return response()->json([
             "status"=>"success",
             "results"=>$product
-        ],200); 
+        ],200);  
+        
+    }
+        
 
+    }
+
+
+    public function getProductName($name=null){
+        
+        if($name != null){
+            $product = Product::find($name);
+            //$restos = $restos? $restos->name : '';
+        }else{
+            $product = Product::all();
         }
+        
+        return response()->json([
+            "status" => "Success",
+            "restos" => $product
+        ], 200);
 
-
+    }
 }
 
