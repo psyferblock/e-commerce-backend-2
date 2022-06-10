@@ -19,8 +19,5 @@ class ReviewController extends Controller
 
 
     }
-    public function callReviews(Request $request,$name,$product){
-        
-        $review=Review::all()->where('name','=','$name')->where('product','=','$product')
-    }
+    
 }
