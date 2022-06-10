@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 
 
 
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,9 +21,9 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/login', [AuthController::class, 'login'])->name("log_in");
-Route::post('/register', [AuthController::class, 'register'])->name("register");
-Route::post('/logout', [AuthController::class, 'logout'])->name("log_out");
+    Route::post('/login', [AuthController::class, 'login'])->name("log_in");
+    Route::post('/register', [AuthController::class, 'register'])->name("register");
+    Route::post('/logout', [AuthController::class, 'logout'])->name("log_out");
 
 
 
