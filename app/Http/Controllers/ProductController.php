@@ -10,7 +10,7 @@ class ProductController extends Controller{
    public function addProduct(Request $request){
 
 
-    $product = new Student;
+    $product = new Product;
     $product->name = $request->input('name');
 
     if($request->hasfile('image'))
@@ -18,12 +18,12 @@ class ProductController extends Controller{
         $file = $request->file('image');
         $extenstion = $file->getClientOriginalExtension();
         $filename = time().'.'.$extenstion;
-        $file->move('uploads/students/', $filename);
+        $file->move('uploads/products/', $filename);
         $product->image = $filename;
     }
 
     $product->save();
-    return redirect()->back()->with('message','Student Image Upload Successfully');
+    return redirect()->back()->with('message','product Image Upload Successfully');
 
 
 }
@@ -58,7 +58,7 @@ class ProductController extends Controller{
             ],200);   
         }
         else if(
-        $product = Product::find($name)){}
+        $product = Product::find($name)){
 
         $product->delete();
         return response()->json([
@@ -76,7 +76,6 @@ class ProductController extends Controller{
         
         if($name != null){
             $product = Product::find($name);
-            //$restos = $restos? $restos->name : '';
         }else{
             $product = Product::all();
         }
