@@ -9,22 +9,17 @@ class ProductController extends Controller{
     //
    public function addProduct(Request $request){
 
-
-    $product = new Product;
-    $product->name = $request->input('name');
-
-    if($request->hasfile('image'))
-    {
-        $file = $request->file('image');
-        $extenstion = $file->getClientOriginalExtension();
-        $filename = time().'.'.$extenstion;
-        $file->move('uploads/products/', $filename);
-        $product->image = $filename;
-    }
-
+    $product=new Product;
+    $product->name=$request->name;
+    $product->category=$request->category;
+    $product->image=$request->image;
+    $product->price=$request->price;
     $product->save();
-    return redirect()->back()->with('message','product Image Upload Successfully');
-
+    return response()->json([
+        "status"=>"success",
+        "products"=>$product
+    ],200);
+    
 
 }
 

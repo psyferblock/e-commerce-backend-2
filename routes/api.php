@@ -14,17 +14,41 @@ use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Namshi\JOSE\Signer\OpenSSL\RSA;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-  
+
+Route::group(['prefix' => 'v1'], function () {
+
+    Route::group(['prefix' => 'users'], function () {
+
+
+    Route::post('/login',[AuthController::class,'login']);
+    Route::post('/register',[AuthController::class,'register']);
+    Route::post('/logout',[AuthController::class,'logout']);
+
+
+    });
+   
+
+    Route::group(['prefix' => 'admin'], function () {
+        Route::post('/add_product',[ProductController::class,'addProduct']);
+        Route::post('/update_product',[ProductController::class,'updateProduct']);
+        Route::post('/delete_product',[ProductController::class,'DeleteProduct']);
+        Route::get('/get_product',[ProductController::class,'getProductName']);
+        Route::get('/get_likes',[LikesController::class,'getLike']);
+
+    });
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/get_product',[ProductController::class,'getProductName']);
+       
+            Route::post('/add_review',[ReviewController::class,'addReview']);
+            Route::post('/like',[LikeController::class,'addLike']);
+
+        Route::get('/call_review',[ReviewController::class,'callReview']);
+
+    });
+    
+    
+
+});
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
