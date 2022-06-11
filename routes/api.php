@@ -4,12 +4,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
+use App\Models\User;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Auth;
-
-
-
-
+use Namshi\JOSE\Signer\OpenSSL\RSA;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +27,16 @@ use Illuminate\Support\Facades\Auth;
   
 
 
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//  initial version of the route 
+
+// UserController php
+
+
+
 
 
 Route::controller(AuthController::class)->group(function () {

@@ -29,8 +29,5 @@ class AdminController extends Controller
             "results" => $user,
         ], 200);
     }
-    public function callReviews(Request $request,$name,$product){
-
-        $review=Review::all()->where('name','=','$name')->where('product','=','$product');
-    }
+   
 }

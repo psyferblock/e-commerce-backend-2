@@ -11,7 +11,6 @@ class UserController extends Controller
     //
     public function signUp(Request $request){
         $user=new User;
-        echo "$user";
 
         $user->name=$request->name;
         $user->email=$request->email;
@@ -22,5 +21,13 @@ class UserController extends Controller
             "status" => "Success",
             "results" => $user
         ], 200);
+    }
+    public function addAdmin(Request $request){
+        $admin =new User;
+        $admin->name=$request->name;
+        $admin->email=$request->email;
+        $admin->password=$request->password;
+        $admin->save();
+
     }
 }
