@@ -20,9 +20,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'users'], function () {
 
 
-    Route::post('/login',[AuthController::class,'login']);
-    Route::post('/register',[AuthController::class,'register']);
-    Route::post('/logout',[AuthController::class,'logout']);
+    Route::post('/login',[UserController::class,'login']);
+    Route::post('/register',[UserController::class,'register']);
+    Route::post('/logout',[UserController::class,'logout']);
 
 
     });
@@ -41,7 +41,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/update_product',[ProductController::class,'updateProduct']);
         Route::post('/delete_product',[ProductController::class,'DeleteProduct']);
         Route::get('/get_product',[ProductController::class,'getProductName']);
-        Route::get('/get_likes',[Controller::class,'getLike']);
+        Route::get('/get_likes',[LikesController::class,'getLike']);
 
     });
     Route::group(['prefix' => 'user'], function () {

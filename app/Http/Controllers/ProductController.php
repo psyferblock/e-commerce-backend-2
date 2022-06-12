@@ -15,6 +15,7 @@ class ProductController extends Controller{
     $product->image=$request->image;
     $product->price=$request->price;
     $product->save();
+
     return response()->json([
         "status"=>"success",
         "products"=>$product
@@ -23,15 +24,15 @@ class ProductController extends Controller{
 
 }
 
-    public function updateProduct(Request $request, $id){
+    public function updateProduct(Request $request,$name){
 
     
-        $product = Product::find($id);
+        $product = Product::find($name);
 
         $product->name = $request->name;
         $product->email = $request->email;
-        $product->course = $request->course;
-        $product->section = $request->section;
+        $product->price = $request->price;
+        $product->image = $request->image;
         $product->save();
 
         return response()->json([
@@ -70,16 +71,36 @@ class ProductController extends Controller{
     public function getProductName($name=null){
         
         if($name != null){
-            $product = Product::find($name);
+            $product = Product::where("name",$name)
+            ->get();
         }else{
             $product = Product::all();
         }
         
         return response()->json([
             "status" => "Success",
-            "restos" => $product
+            "results" => $product
+        ], 200);
+
+    }
+    
+    public function getProductCategory(Request $request){
+        
+        
+
+        if($request != null){
+            $product = Product::where("category",$request->category)
+            ->get();
+        // }else{
+            // $product = Product::all();
+        }
+        
+        return response()->json([
+            "status" => "Success",
+            "results" => $product
         ], 200);
 
     }
 }
+
 
