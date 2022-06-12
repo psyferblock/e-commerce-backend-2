@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
+
+// auth controller from jwt token 
 class AuthController extends Controller
 {
 

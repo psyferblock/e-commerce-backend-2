@@ -12,21 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    //
-    public function signUp(Request $request){
-        $user=new User;
+   
 
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=$request->password;
-        $user->save();
+    // add user function 
 
-        return response()->json([
-            "status" => "Success",
-            "results" => $user
-        ], 200);
-    }
-    public function addAdmin(Request $request){
+    public function addUser(Request $request){
         $admin =new User;
         $admin->name=$request->name;
         $admin->email=$request->email;
@@ -34,6 +24,9 @@ class UserController extends Controller
         $admin->save();
 
     }
+
+    // register user function 
+
     public function registerUser(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
@@ -58,6 +51,8 @@ class UserController extends Controller
             ]
         ]);
     }
+    // user login function 
+
     public function loginUser(Request $request)
     {
         $request->validate([
@@ -84,5 +79,13 @@ class UserController extends Controller
                 ]
             ]);
 
+    }
+    public function Userlogout()
+    {
+        User::logout();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully logged out',
+        ]);
     }
 }

@@ -8,7 +8,8 @@ use App\Models\Review;
 
 class ReviewController extends Controller
 {
-    //
+    //add review function
+    
     public function addReview(Request $request){
 
         $review=new Review ;
@@ -20,6 +21,8 @@ class ReviewController extends Controller
 
 
     }
+    // call reviews function 
+
     public function callReviews(Request $request){
         
         $review=Review::all()

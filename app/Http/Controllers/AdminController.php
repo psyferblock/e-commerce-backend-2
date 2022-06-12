@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 
 {
-    //
+    //add admin function
+
     public function addAdmin(Request $request){
         $admin =new Admin;
         $admin->name=$request->name;
@@ -21,20 +22,9 @@ class AdminController extends Controller
         $admin->save();
 
     }
-    public function signup(Request $request){
-        $user=new Admin;
+    
+//    login admin function 
 
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=$request->password;
-        $user->save();
-
-        return response()->json([
-            "status" => "Success",
-            "results" => $user,
-        ], 200);
-    }
-   
     public function loginAdmin(Request $request)
     {
         $request->validate([
@@ -83,6 +73,16 @@ class AdminController extends Controller
                     'token' => $token,
                     'type' => 'bearer',
                 ]
+            ]);
+        }
+        // admin logout 
+
+        public function adminLogout()
+        {
+            Admin::logout();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Successfully logged out',
             ]);
         }
 }

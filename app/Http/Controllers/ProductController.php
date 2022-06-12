@@ -6,7 +6,9 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller{
-    //
+    
+    // add product function
+
    public function addProduct(Request $request){
 
     $product=new Product;
@@ -23,11 +25,12 @@ class ProductController extends Controller{
     
 
 }
+    // update product function 
 
-    public function updateProduct(Request $request,$name){
+    public function updateProduct(Request $request){
 
     
-        $product = Product::find($name);
+        $product = Product::find($request);
 
         $product->name = $request->name;
         $product->email = $request->email;
@@ -42,6 +45,7 @@ class ProductController extends Controller{
 
 
     }
+    // delete product function 
 
     public function deleteProduct(Request $request,$id=null,$name){
     
@@ -67,6 +71,7 @@ class ProductController extends Controller{
 
     }
 
+    // get product by name function 
 
     public function getProductName($name=null){
         
@@ -83,6 +88,8 @@ class ProductController extends Controller{
         ], 200);
 
     }
+    
+    // get product by category function 
     
     public function getProductCategory(Request $request){
         
