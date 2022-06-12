@@ -16,7 +16,7 @@ class AdminController extends Controller
         $admin->save();
 
     }
-    public function signUp(Request $request){
+    public function signup(Request $request){
         $user=new Admin;
 
         $user->name=$request->name;
@@ -30,4 +30,30 @@ class AdminController extends Controller
         ], 200);
     }
    
+    public function loginAdmin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+        $credentials = $request->only('email', 'password');
+
+        $token = Admin::attempt($credentials);
+        if (!$token) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Unauthorized',
+            ], 401);
+        }
+
+        $user = Admin::user();
+        return response()->json([
+                'status' => 'success',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
+        }
 }

@@ -26,14 +26,22 @@ Route::group(['prefix' => 'v1'], function () {
 
 
     });
-   
+    Route::group(['prefix' => 'admin'], function () {
+
+
+        Route::post('/login_admin',[AdminController::class,'loginAdmin']);
+        Route::post('/register',[AuthController::class,'register']);
+        Route::post('/logout',[AuthController::class,'logout']);
+    
+    
+        });
 
     Route::group(['prefix' => 'admin'], function () {
         Route::post('/add_product',[ProductController::class,'addProduct']);
         Route::post('/update_product',[ProductController::class,'updateProduct']);
         Route::post('/delete_product',[ProductController::class,'DeleteProduct']);
         Route::get('/get_product',[ProductController::class,'getProductName']);
-        Route::get('/get_likes',[LikesController::class,'getLike']);
+        Route::get('/get_likes',[Controller::class,'getLike']);
 
     });
     Route::group(['prefix' => 'user'], function () {
