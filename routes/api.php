@@ -20,18 +20,18 @@ Route::group(['prefix' => 'v1'], function () {
     Route::group(['prefix' => 'users'], function () {
 
 
-    Route::post('/login',[UserController::class,'login']);
-    Route::post('/register',[UserController::class,'register']);
-    Route::post('/logout',[UserController::class,'logout']);
+    Route::post('/login_user',[UserController::class,'loginUser']);
+    Route::post('/register_user',[UserController::class,'registerUser']);
+    Route::post('/logout_user',[UserController::class,'logoutUser']);
 
-
+        
     });
     Route::group(['prefix' => 'admin'], function () {
 
 
         Route::post('/login_admin',[AdminController::class,'loginAdmin']);
-        Route::post('/register',[AuthController::class,'register']);
-        Route::post('/logout',[AuthController::class,'logout']);
+        Route::post('/register_admin',[AdminController::class,'registerAdmin']);
+        Route::post('/logout_admin',[AdminController::class,'logoutAdmin']);
     
     
         });
